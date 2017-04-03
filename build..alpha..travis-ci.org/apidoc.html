@@ -1,0 +1,793 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/tomas/needle#readme"
+
+    >needle (v1.6.0)</a>
+</h1>
+<h4>The leanest and most handsome HTTP client in the Nodelands.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.needle">module needle</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.defaults">
+            function <span class="apidocSignatureSpan">needle.</span>defaults
+            <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.delete">
+            function <span class="apidocSignatureSpan">needle.</span>delete
+            <span class="apidocSignatureSpan">(uri, data, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.get">
+            function <span class="apidocSignatureSpan">needle.</span>get
+            <span class="apidocSignatureSpan">(uri, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.head">
+            function <span class="apidocSignatureSpan">needle.</span>head
+            <span class="apidocSignatureSpan">(uri, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.patch">
+            function <span class="apidocSignatureSpan">needle.</span>patch
+            <span class="apidocSignatureSpan">(uri, data, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.post">
+            function <span class="apidocSignatureSpan">needle.</span>post
+            <span class="apidocSignatureSpan">(uri, data, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.put">
+            function <span class="apidocSignatureSpan">needle.</span>put
+            <span class="apidocSignatureSpan">(uri, data, options, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.request">
+            function <span class="apidocSignatureSpan">needle.</span>request
+            <span class="apidocSignatureSpan">(method, uri, data, opts, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">needle.</span>auth</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">needle.</span>cookies</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">needle.</span>multipart</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">needle.</span>querystring</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">needle.</span>version</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.needle.auth">module needle.auth</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.auth.basic">
+            function <span class="apidocSignatureSpan">needle.auth.</span>basic
+            <span class="apidocSignatureSpan">(user, pass)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.auth.digest">
+            function <span class="apidocSignatureSpan">needle.auth.</span>digest
+            <span class="apidocSignatureSpan">(header, user, pass, method, path)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.auth.header">
+            function <span class="apidocSignatureSpan">needle.auth.</span>header
+            <span class="apidocSignatureSpan">(header, credentials, opts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.needle.cookies">module needle.cookies</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.cookies.read">
+            function <span class="apidocSignatureSpan">needle.cookies.</span>read
+            <span class="apidocSignatureSpan">(header)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.cookies.write">
+            function <span class="apidocSignatureSpan">needle.cookies.</span>write
+            <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.needle.multipart">module needle.multipart</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.multipart.build">
+            function <span class="apidocSignatureSpan">needle.multipart.</span>build
+            <span class="apidocSignatureSpan">(data, boundary, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.needle.querystring">module needle.querystring</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.querystring.build">
+            function <span class="apidocSignatureSpan">needle.querystring.</span>build
+            <span class="apidocSignatureSpan">(obj, prefix)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.needle" id="apidoc.module.needle">module needle</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.needle.defaults" id="apidoc.element.needle.defaults">
+        function <span class="apidocSignatureSpan">needle.</span>defaults
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">defaults = function (obj) {
+  for (var key in obj) {
+    var target_key = aliased.options[key] || key;
+
+    if (defaults.hasOwnProperty(target_key) &#x26;&#x26; typeof obj[key] != &#x27;undefined&#x27;) {
+      if (target_key != &#x27;parse_response&#x27; &#x26;&#x26; target_key != &#x27;proxy&#x27;) {
+        // ensure type matches the original, except for proxy/parse_response that can be null/bool or string
+        var valid_type = defaults[target_key].constructor.name;
+
+        if (obj[key].constructor.name != valid_type)
+          throw new TypeError(&#x27;Invalid type for &#x27; + key + &#x27;, should be &#x27; + valid_type);
+      }
+      defaults[target_key] = obj[key];
+    }
+  }
+
+  return defaults;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Overriding Defaults
+-------------------
+
+Yes sir, we have it. Needle includes a `defaults()` method, that lets you override some of the defaults for all future requests.
+Like this:
+
+```js
+needle.<span class="apidocCodeKeywordSpan">defaults</span>({
+  open_timeout: 60000,
+  user_agent: &#x27;MyApp/1.2.3&#x27;,
+  parse_response: false });
+```
+
+This will override Needle&#x27;s default user agent and 10-second timeout, and disable response parsing, so you don&#x27;t need
+to pass those options in every other request.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.delete" id="apidoc.element.needle.delete">
+        function <span class="apidocSignatureSpan">needle.</span>delete
+        <span class="apidocSignatureSpan">(uri, data, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">delete = function (uri, data, options, callback) {
+  return new Needle(method, uri, data, options, callback).start();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+```
+
+### needle.patch(url, data[, options][, callback])
+
+Same behaviour as PUT.
+
+### needle.<span class="apidocCodeKeywordSpan">delete</span>(url, data[, options][, callback])
+
+```js
+var options = {
+  username: &#x27;fidelio&#x27;,
+  password: &#x27;x&#x27;
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.get" id="apidoc.element.needle.get">
+        function <span class="apidocSignatureSpan">needle.</span>get
+        <span class="apidocSignatureSpan">(uri, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">get = function (uri, options, callback) {
+  return new Needle(method, uri, null, options, callback).start();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+[![NPM](https://nodei.co/npm/needle.png)](https://nodei.co/npm/needle/)
+
+The leanest and most handsome HTTP client in the Nodelands.
+
+```js
+var needle = require(&#x27;needle&#x27;);
+
+needle.<span class="apidocCodeKeywordSpan">get</span>(&#x27;http://www.google.com&#x27;, function(error, response) {
+  if (!error &#x26;&#x26; response.statusCode == 200)
+    console.log(response.body);
+});
+```
+
+Callbacks not floating your boat? Needle got your back.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.head" id="apidoc.element.needle.head">
+        function <span class="apidocSignatureSpan">needle.</span>head
+        <span class="apidocSignatureSpan">(uri, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">head = function (uri, options, callback) {
+  return new Needle(method, uri, null, options, callback).start();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+API
+---
+
+All of Needle&#x27;s request methods return a Readable stream, and both `options` and `callback` are optional. If passed, the callback
+ will return three arguments: `error`, `response` and `body`, which is basically an alias for `response.body`.
+
+### needle.<span class="apidocCodeKeywordSpan">head</span>(url[, options][, callback])
+
+```js
+var options = {
+  open_timeout: 5000 // if we don&#x27;t get our response headers in 5 seconds, boom.
+}
+
+needle.head(&#x27;https://my.backend.server.com&#x27;, function(err, resp) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.patch" id="apidoc.element.needle.patch">
+        function <span class="apidocSignatureSpan">needle.</span>patch
+        <span class="apidocSignatureSpan">(uri, data, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">patch = function (uri, data, options, callback) {
+  return new Needle(method, uri, data, options, callback).start();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+needle.put(&#x27;https://api.app.com/v2&#x27;, nested, function(err, resp) {
+  console.log(&#x27;Got &#x27; + resp.bytes + &#x27; bytes.&#x27;) // another nice treat from this handsome fella.
+});
+```
+
+### needle.<span class="apidocCodeKeywordSpan">patch</span>(url, data[, options][, callback])
+
+Same behaviour as PUT.
+
+### needle.delete(url, data[, options][, callback])
+
+```js
+var options = {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.post" id="apidoc.element.needle.post">
+        function <span class="apidocSignatureSpan">needle.</span>post
+        <span class="apidocSignatureSpan">(uri, data, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">post = function (uri, data, options, callback) {
+  return new Needle(method, uri, data, options, callback).start();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```js
+var data = {
+  file: &#x27;/home/johnlennon/walrus.png&#x27;,
+  content_type: &#x27;image/png&#x27;
+};
+
+needle
+  .<span class="apidocCodeKeywordSpan">post</span>(&#x27;https://my.server.com/foo&#x27;, data, { multipart: true })
+  .on(&#x27;readable&#x27;, function() { /* eat your chunks */ })
+  .on(&#x27;done&#x27;, function() {
+    console.log(&#x27;Ready-o, friend-o.&#x27;);
+  })
+```
+
+With only one real dependency, Needle supports:
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.put" id="apidoc.element.needle.put">
+        function <span class="apidocSignatureSpan">needle.</span>put
+        <span class="apidocSignatureSpan">(uri, data, options, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">put = function (uri, data, options, callback) {
+  return new Needle(method, uri, data, options, callback).start();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+needle.post(&#x27;https://my.app.com/endpoint&#x27;, &#x27;foo=bar&#x27;, options, function(err, resp) {
+// you can pass params as a string or as an object.
+});
+```
+
+### needle.<span class="apidocCodeKeywordSpan">put</span>(url, data[, options][, callback])
+
+```js
+var nested = {
+params: {
+  are: {
+    also: &#x27;supported&#x27;
+  }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.request" id="apidoc.element.needle.request">
+        function <span class="apidocSignatureSpan">needle.</span>request
+        <span class="apidocSignatureSpan">(method, uri, data, opts, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">request = function (method, uri, data, opts, callback) {
+  return new Needle(method, uri, data, opts, callback).start();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+needle.delete(&#x27;https://api.app.com/messages/123&#x27;, null, options, function(err, resp) {
+// in this case, data may be null, but you need to explicity pass it.
+});
+```
+
+### needle.<span class="apidocCodeKeywordSpan">request</span>(method, url, data[, options][, callback])
+
+Generic request. This not only allows for flexibility, but also lets you perform a GET request with data, in which case will be
+appended to the request as a query string, unless you pass a `json: true` option (read below).
+
+```js
+var params = {
+q    : &#x27;a very smart query&#x27;,
+page : 2
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.needle.auth" id="apidoc.module.needle.auth">module needle.auth</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.needle.auth.basic" id="apidoc.element.needle.auth.basic">
+        function <span class="apidocSignatureSpan">needle.auth.</span>basic
+        <span class="apidocSignatureSpan">(user, pass)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function basic(user, pass) {
+  var str  = typeof pass == &#x27;undefined&#x27; ? user : [user, pass].join(&#x27;:&#x27;);
+  return &#x27;Basic &#x27; + new Buffer(str).toString(&#x27;base64&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.auth.digest" id="apidoc.element.needle.auth.digest">
+        function <span class="apidocSignatureSpan">needle.auth.</span>digest
+        <span class="apidocSignatureSpan">(header, user, pass, method, path)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">digest = function (header, user, pass, method, path) {
+
+  var nc        = 1,
+      cnonce    = null,
+      challenge = digest.parse_header(header);
+
+  var ha1  = md5(user + &#x27;:&#x27; + challenge.realm + &#x27;:&#x27; + pass),
+      ha2  = md5(method.toUpperCase() + &#x27;:&#x27; + path),
+      resp = [ha1, challenge.nonce];
+
+  if (typeof challenge.qop === &#x27;string&#x27;) {
+    cnonce = md5(Math.random().toString(36)).substr(0, 8);
+    nc     = digest.update_nc(nc);
+    resp   = resp.concat(nc, cnonce);
+  }
+
+  resp = resp.concat(challenge.qop, ha2);
+
+  var params = {
+    uri      : path,
+    realm    : challenge.realm,
+    nonce    : challenge.nonce,
+    username : user,
+    response : md5(resp.join(&#x27;:&#x27;))
+  }
+
+  if (challenge.qop) {
+    params.qop = challenge.qop;
+  }
+
+  if (challenge.opaque) {
+    params.opaque = challenge.opaque;
+  }
+
+  if (cnonce) {
+    params.nc = nc;
+    params.cnonce = cnonce;
+  }
+
+  header = []
+  for (var k in params)
+    header.push(k + &#x27;=&#x22;&#x27; + params[k] + &#x27;&#x22;&#x27;)
+
+  return &#x27;Digest &#x27; + header.join(&#x27;, &#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+}
+
+////////////////////
+// basic
+
+function md5(string) {
+  return createHash(&#x27;md5&#x27;).update(string).<span class="apidocCodeKeywordSpan">digest</span>(&#x27;hex&#x27;);
+}
+
+function basic(user, pass) {
+  var str  = typeof pass == &#x27;undefined&#x27; ? user : [user, pass].join(&#x27;:&#x27;);
+  return &#x27;Basic &#x27; + new Buffer(str).toString(&#x27;base64&#x27;);
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.auth.header" id="apidoc.element.needle.auth.header">
+        function <span class="apidocSignatureSpan">needle.auth.</span>header
+        <span class="apidocSignatureSpan">(header, credentials, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function get_header(header, credentials, opts) {
+  var type = header.split(&#x27; &#x27;)[0],
+      user = credentials[0],
+      pass = credentials[1];
+
+  if (type == &#x27;Digest&#x27;) {
+    return digest.generate(header, user, pass, opts.method, opts.path);
+  } else if (type == &#x27;Basic&#x27;) {
+    return basic(user, pass);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.needle.cookies" id="apidoc.module.needle.cookies">module needle.cookies</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.needle.cookies.read" id="apidoc.element.needle.cookies.read">
+        function <span class="apidocSignatureSpan">needle.cookies.</span>read
+        <span class="apidocSignatureSpan">(header)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function parseSetCookieHeader(header) {
+  if (!header) return {};
+  header = (header instanceof Array) ? header : [header];
+
+  return header.reduce(function(res, str) {
+    var cookie = parseSetCookieString(str);
+    if (cookie) res[cookie.name] = cookie.value;
+    return res;
+  }, {});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+rejectUnauthorized : true  // verify SSL certificate
+}
+
+var stream = needle.get(&#x27;https://backend.server.com/everything.html&#x27;, options);
+
+// read the chunks from the &#x27;readable&#x27; event, so the stream gets consumed.
+stream.on(&#x27;readable&#x27;, function() {
+while (data = this.<span class="apidocCodeKeywordSpan">read</span>()) {
+  console.log(data.toString());
+}
+})
+
+stream.on(&#x27;done&#x27;, function(err) {
+// if our request had an error, our &#x27;done&#x27; event will tell us.
+if (!err) console.log(&#x27;Great success!&#x27;);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.cookies.write" id="apidoc.element.needle.cookies.write">
+        function <span class="apidocSignatureSpan">needle.cookies.</span>write
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function writeCookieString(obj) {
+  return Object.keys(obj).reduce(function(str, name) {
+    var encodedName  = encodeCookieComponent(name);
+    var encodedValue = encodeCookieComponent(obj[name]);
+    str += (str ? &#x27;; &#x27; : &#x27;&#x27;) + encodedName + &#x27;=&#x27; + encodedValue;
+    return str;
+  }, &#x27;&#x27;);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.needle.multipart" id="apidoc.module.needle.multipart">module needle.multipart</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.needle.multipart.build" id="apidoc.element.needle.multipart.build">
+        function <span class="apidocSignatureSpan">needle.multipart.</span>build
+        <span class="apidocSignatureSpan">(data, boundary, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">build = function (data, boundary, callback) {
+
+  if (typeof data != &#x27;object&#x27; || typeof data.pipe == &#x27;function&#x27;)
+    return callback(new Error(&#x27;Multipart builder expects data as key/val object.&#x27;));
+
+  var body   = &#x27;&#x27;,
+      object = flatten(data),
+      count  = Object.keys(object).length;
+
+  if (count === 0)
+    return callback(new Error(&#x27;Empty multipart body. Invalid data.&#x27;))
+
+  function done(err, section) {
+    if (err) return callback(err);
+    if (section) body += section;
+    --count || callback(null, body + &#x27;--&#x27; + boundary + &#x27;--&#x27;);
+  };
+
+  for (var key in object) {
+
+    var value = object[key];
+    if (value === null || typeof value == &#x27;undefined&#x27;) {
+      done();
+    } else {
+      var part = (value.buffer || value.file || value.content_type) ? value : {value: value};
+      generate_part(key, part, boundary, done);
+    }
+  }
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.needle.querystring" id="apidoc.module.needle.querystring">module needle.querystring</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.needle.querystring.build" id="apidoc.element.needle.querystring.build">
+        function <span class="apidocSignatureSpan">needle.querystring.</span>build
+        <span class="apidocSignatureSpan">(obj, prefix)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function stringify(obj, prefix) {
+  if (prefix &#x26;&#x26; (obj === null || typeof obj == &#x27;undefined&#x27;)) {
+    return prefix + &#x27;=&#x27;;
+  } else if (toString.call(obj) == &#x27;[object Array]&#x27;) {
+    return stringifyArray(obj, prefix);
+  } else if (toString.call(obj) == &#x27;[object Object]&#x27;) {
+    return stringifyObject(obj, prefix);
+  } else if (toString.call(obj) == &#x27;[object Date]&#x27;) {
+    return obj.toISOString();
+  } else if (prefix) { // string inside array or hash
+    return prefix + &#x27;=&#x27; + encodeURIComponent(String(obj));
+  } else if (String(obj).indexOf(&#x27;=&#x27;) !== -1) { // string with equal sign
+    return String(obj);
+  } else {
+    throw new TypeError(&#x27;Cannot build a querystring out of: &#x27; + obj);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
