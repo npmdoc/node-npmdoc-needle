@@ -47,7 +47,7 @@
 }
 </style>
 <h1>api documentation for
-    <a href="https://github.com/tomas/needle#readme">needle (v1.6.0)</a>
+    <a>needle (v1.6.0)</a>
 </h1>
 <h4>The leanest and most handsome HTTP client in the Nodelands.</h4>
 <div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
@@ -134,6 +134,24 @@
 
         <li>
 
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">needle.</span>cookies</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">needle.</span>multipart</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">needle.</span>querystring</span>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">needle.</span>version</span>
 
         </li>
@@ -165,6 +183,54 @@
             <a class="apidocElementLiA" href="#apidoc.element.needle.auth.header">
             function <span class="apidocSignatureSpan">needle.auth.</span>header
             <span class="apidocSignatureSpan">(header, credentials, opts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.needle.cookies">module needle.cookies</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.cookies.read">
+            function <span class="apidocSignatureSpan">needle.cookies.</span>read
+            <span class="apidocSignatureSpan">(header)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.cookies.write">
+            function <span class="apidocSignatureSpan">needle.cookies.</span>write
+            <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.needle.multipart">module needle.multipart</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.multipart.build">
+            function <span class="apidocSignatureSpan">needle.multipart.</span>build
+            <span class="apidocSignatureSpan">(data, boundary, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.needle.querystring">module needle.querystring</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.needle.querystring.build">
+            function <span class="apidocSignatureSpan">needle.querystring.</span>build
+            <span class="apidocSignatureSpan">(obj, prefix)</span>
             </a>
 
         </li>
@@ -444,6 +510,12 @@ page : 2
 
 
 
+
+
+
+
+
+
 </div>
 
 <div class="apidocSectionDiv">
@@ -554,6 +626,150 @@ function basic(user, pass) {
     return digest.generate(header, user, pass, opts.method, opts.path);
   } else if (type == 'Basic') {
     return basic(user, pass);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.needle.cookies" id="apidoc.module.needle.cookies">module needle.cookies</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.needle.cookies.read" id="apidoc.element.needle.cookies.read">
+        function <span class="apidocSignatureSpan">needle.cookies.</span>read
+        <span class="apidocSignatureSpan">(header)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function parseSetCookieHeader(header) {
+  if (!header) return {};
+  header = (header instanceof Array) ? header : [header];
+
+  return header.reduce(function(res, str) {
+    var cookie = parseSetCookieString(str);
+    if (cookie) res[cookie.name] = cookie.value;
+    return res;
+  }, {});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+rejectUnauthorized : true  // verify SSL certificate
+}
+
+var stream = needle.get('https://backend.server.com/everything.html', options);
+
+// read the chunks from the 'readable' event, so the stream gets consumed.
+stream.on('readable', function() {
+while (data = this.<span class="apidocCodeKeywordSpan">read</span>()) {
+  console.log(data.toString());
+}
+})
+
+stream.on('done', function(err) {
+// if our request had an error, our 'done' event will tell us.
+if (!err) console.log('Great success!');
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.needle.cookies.write" id="apidoc.element.needle.cookies.write">
+        function <span class="apidocSignatureSpan">needle.cookies.</span>write
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function writeCookieString(obj) {
+  return Object.keys(obj).reduce(function(str, name) {
+    var encodedName  = encodeCookieComponent(name);
+    var encodedValue = encodeCookieComponent(obj[name]);
+    str += (str ? '; ' : '') + encodedName + '=' + encodedValue;
+    return str;
+  }, '');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.needle.multipart" id="apidoc.module.needle.multipart">module needle.multipart</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.needle.multipart.build" id="apidoc.element.needle.multipart.build">
+        function <span class="apidocSignatureSpan">needle.multipart.</span>build
+        <span class="apidocSignatureSpan">(data, boundary, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">build = function (data, boundary, callback) {
+
+  if (typeof data != 'object' || typeof data.pipe == 'function')
+    return callback(new Error('Multipart builder expects data as key/val object.'));
+
+  var body   = '',
+      object = flatten(data),
+      count  = Object.keys(object).length;
+
+  if (count === 0)
+    return callback(new Error('Empty multipart body. Invalid data.'))
+
+  function done(err, section) {
+    if (err) return callback(err);
+    if (section) body += section;
+    --count || callback(null, body + '--' + boundary + '--');
+  };
+
+  for (var key in object) {
+
+    var value = object[key];
+    if (value === null || typeof value == 'undefined') {
+      done();
+    } else {
+      var part = (value.buffer || value.file || value.content_type) ? value : {value: value};
+      generate_part(key, part, boundary, done);
+    }
+  }
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.needle.querystring" id="apidoc.module.needle.querystring">module needle.querystring</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.needle.querystring.build" id="apidoc.element.needle.querystring.build">
+        function <span class="apidocSignatureSpan">needle.querystring.</span>build
+        <span class="apidocSignatureSpan">(obj, prefix)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function stringify(obj, prefix) {
+  if (prefix &amp;&amp; (obj === null || typeof obj == 'undefined')) {
+    return prefix + '=';
+  } else if (toString.call(obj) == '[object Array]') {
+    return stringifyArray(obj, prefix);
+  } else if (toString.call(obj) == '[object Object]') {
+    return stringifyObject(obj, prefix);
+  } else if (toString.call(obj) == '[object Date]') {
+    return obj.toISOString();
+  } else if (prefix) { // string inside array or hash
+    return prefix + '=' + encodeURIComponent(String(obj));
+  } else if (String(obj).indexOf('=') !== -1) { // string with equal sign
+    return String(obj);
+  } else {
+    throw new TypeError('Cannot build a querystring out of: ' + obj);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
