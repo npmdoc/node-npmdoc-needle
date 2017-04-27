@@ -1,6 +1,6 @@
 # npmdoc-needle
 
-#### api documentation for  needle (v1.6.0)  [![npm package](https://img.shields.io/npm/v/npmdoc-needle.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-needle) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-needle.svg)](https://travis-ci.org/npmdoc/node-npmdoc-needle)
+#### basic api documentation for  [needle (v1.6.0)](https://github.com/tomas/needle#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-needle.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-needle) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-needle.svg)](https://travis-ci.org/npmdoc/node-npmdoc-needle)
 
 #### The leanest and most handsome HTTP client in the Nodelands.
 
@@ -21,9 +21,41 @@
 ```json
 
 {
-    "name": "needle",
-    "version": "1.6.0",
+    "author": {
+        "name": "Tomás Pollak"
+    },
+    "bin": {
+        "needle": "./bin/needle"
+    },
+    "bugs": {
+        "url": "https://github.com/tomas/needle/issues"
+    },
+    "dependencies": {
+        "debug": "^2.1.2",
+        "iconv-lite": "^0.4.4"
+    },
     "description": "The leanest and most handsome HTTP client in the Nodelands.",
+    "devDependencies": {
+        "JSONStream": "",
+        "jschardet": "",
+        "mocha": "",
+        "q": "",
+        "should": "",
+        "sinon": "",
+        "xml2js": ""
+    },
+    "directories": {
+        "lib": "./lib"
+    },
+    "dist": {
+        "shasum": "f52a5858972121618e002f8e6384cadac22d624f",
+        "tarball": "https://registry.npmjs.org/needle/-/needle-1.6.0.tgz"
+    },
+    "engines": {
+        "node": ">= 0.10.x"
+    },
+    "gitHead": "f801ef68c707639d7fffbd5e147cc6abcd6fbeca",
+    "homepage": "https://github.com/tomas/needle#readme",
     "keywords": [
         "http",
         "https",
@@ -40,6 +72,22 @@
         "cookie",
         "redirect"
     ],
+    "license": "MIT",
+    "main": "./lib/needle",
+    "maintainers": [
+        {
+            "name": "tomas"
+        }
+    ],
+    "name": "needle",
+    "optionalDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tomas/needle.git"
+    },
+    "scripts": {
+        "test": "mocha test"
+    },
     "tags": [
         "http",
         "https",
@@ -56,38 +104,7 @@
         "cookie",
         "redirect"
     ],
-    "author": "Tomás Pollak <tomas@forkhq.com>",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/tomas/needle.git"
-    },
-    "dependencies": {
-        "debug": "^2.1.2",
-        "iconv-lite": "^0.4.4"
-    },
-    "devDependencies": {
-        "mocha": "",
-        "sinon": "",
-        "should": "",
-        "xml2js": "",
-        "JSONStream": "",
-        "q": "",
-        "jschardet": ""
-    },
-    "scripts": {
-        "test": "mocha test"
-    },
-    "directories": {
-        "lib": "./lib"
-    },
-    "main": "./lib/needle",
-    "bin": {
-        "needle": "./bin/needle"
-    },
-    "license": "MIT",
-    "engines": {
-        "node": ">= 0.10.x"
-    }
+    "version": "1.6.0"
 }
 ```
 
