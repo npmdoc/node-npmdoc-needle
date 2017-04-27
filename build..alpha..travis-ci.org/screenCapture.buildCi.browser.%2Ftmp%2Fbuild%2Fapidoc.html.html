@@ -47,7 +47,7 @@
 }
 </style>
 <h1>api documentation for
-    <a>needle (v1.6.0)</a>
+    <a href="https://github.com/tomas/needle#readme">needle (v1.6.0)</a>
 </h1>
 <h4>The leanest and most handsome HTTP client in the Nodelands.</h4>
 <div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
@@ -533,7 +533,24 @@ page : 2
   var str  = typeof pass == 'undefined' ? user : [user, pass].join(':');
   return 'Basic ' + new Buffer(str).toString('base64');
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  options.password = parts[1];
+}
+
+if (options.username) {
+  if (options.auth &amp;&amp; (options.auth == 'auto' || options.auth == 'digest')) {
+    config.credentials = [options.username, options.password];
+  } else {
+    config.headers['authorization'] = auth.<span class="apidocCodeKeywordSpan">basic</span>(options.username, options.
+password);
+  }
+}
+
+// if proxy is present, set auth header from either url or proxy_user option.
+if (config.proxy) {
+  if (config.proxy.indexOf('http') === -1)
+    config.proxy = 'http://' + config.proxy;
+...</pre></li>
     </ul>
 
 
@@ -628,7 +645,24 @@ function basic(user, pass) {
     return basic(user, pass);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    return done(new Error('Max redirects reached. Possible loop in: ' + headers.location));
+  }
+}
+
+// if auth is requested and credentials were not passed, resend request, provided we have user/pass.
+if (resp.statusCode == 401 &amp;&amp; headers['www-authenticate'] &amp;&amp; config.credentials) {
+  if (!config.headers['authorization']) { // only if authentication hasn't been sent
+    var auth_header = auth.<span class="apidocCodeKeywordSpan">header</span>(headers['www-authenticate'], config.credentials
+, request_opts);
+
+    if (auth_header) {
+      config.headers['authorization'] = auth_header;
+      return self.send_request(count, method, uri, config, post_data, out, callback);
+    }
+  }
+}
+...</pre></li>
     </ul>
 
 
@@ -691,7 +725,23 @@ if (!err) console.log('Great success!');
     return str;
   }, '');
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+if (options.connection || close_by_default)
+  config.headers['connection'] = options.connection || 'close';
+
+if ((options.compressed || defaults.compressed) &amp;&amp; typeof zlib != 'undefined')
+  config.headers['accept-encoding'] = 'gzip,deflate';
+
+if (options.cookies)
+  config.headers['cookie'] = cookies.<span class="apidocCodeKeywordSpan">write</span>(options.cookies);
+
+//////////////////////////////////////////////////
+// basic/digest auth
+
+if (uri.indexOf('@') !== -1) { // url contains user:pass@host, so parse it.
+  var parts = (url.parse(uri).auth || '').split(':');
+  options.username = parts[0];
+...</pre></li>
     </ul>
 
 
@@ -738,7 +788,23 @@ if (!err) console.log('Great success!');
   }
 
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  if (data) {
+
+if (options.multipart) { // boss says we do multipart. so we do it.
+  var boundary = options.boundary || defaults.boundary;
+
+  waiting = true;
+  multipart.<span class="apidocCodeKeywordSpan">build</span>(data, boundary, function(err, parts) {
+    if (err) throw(err);
+
+    config.headers['content-type'] = 'multipart/form-data; boundary=' + boundary;
+    next(parts);
+  });
+
+} else if (is_stream(data)) {
+...</pre></li>
     </ul>
 
 
@@ -772,7 +838,23 @@ if (!err) console.log('Great success!');
     throw new TypeError('Cannot build a querystring out of: ' + obj);
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  if (data) {
+
+if (options.multipart) { // boss says we do multipart. so we do it.
+  var boundary = options.boundary || defaults.boundary;
+
+  waiting = true;
+  multipart.<span class="apidocCodeKeywordSpan">build</span>(data, boundary, function(err, parts) {
+    if (err) throw(err);
+
+    config.headers['content-type'] = 'multipart/form-data; boundary=' + boundary;
+    next(parts);
+  });
+
+} else if (is_stream(data)) {
+...</pre></li>
     </ul>
 
 
